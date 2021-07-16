@@ -1,5 +1,20 @@
+@import "~antd/dist/antd.min.css";
+
+html{
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+}
+
 body {
   margin: 0;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,7 +22,47 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a{
+  text-decoration: none!important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#root, main{
+  height: 100%;
+}
+
+main{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  .logo{
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    opacity: 0.5;
+    transition: opacity 300ms ease;
+    &:hover{
+      opacity: 1;
+    }
+  }
+}
+
+.page{
+  padding: 0 78px;
+  min-height: 100%;
+  &-title{
+    padding: 12px 42px;
+    margin-bottom: 60px;
+    h1{
+      font-weight: bold;
+      color: #ffffff;
+      line-height: 60px;
+      font-size: 40px;
+    }
+  }
 }
