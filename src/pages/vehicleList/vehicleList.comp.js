@@ -20,9 +20,9 @@ const columns = [
     key: 'engine',
   },
   {
-    title: 'Chasis No.',
-    dataIndex: 'chasis',
-    key: 'chasis',
+    title: 'Chassis No.',
+    dataIndex: 'chassis',
+    key: 'chassis',
   },
 ];
 
@@ -34,7 +34,7 @@ const VehicleListComp = ({loading, list, error, fetchVehicleList}) => {
 
   useEffect(() => {
     error?.code && message.error(error.msg);
-  }, [error])
+  }, [error?.code]);
 
   return (
     <div className="page">

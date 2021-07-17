@@ -7,12 +7,6 @@ export const getVehicleListSuccess = (payload) => {
   }
 }
 
-export const getVehicleListInProgress = () => {
-  return {
-    type: 'GET_VEHICLE_LIST_PROGRESS',
-  }
-}
-
 export const getVehicleListFailed = (err) => {
   return {
     type: 'GET_VEHICLE_LIST_FAILED',
@@ -22,7 +16,6 @@ export const getVehicleListFailed = (err) => {
 
 export const fetchVehicleList = () => {
   return async (dispatch) => {
-    dispatch(getVehicleListInProgress);
     try{
       const response = await getVehicleList();
       dispatch(getVehicleListSuccess(response));
