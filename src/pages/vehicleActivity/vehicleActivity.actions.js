@@ -12,6 +12,11 @@ export const getVehicleActivityInProgress = () => {
     type: 'GET_VEHICLE_ACTIVITY_PROGRESS',
   }
 }
+export const vehicleActivityReset = () => {
+  return {
+    type: 'GET_VEHICLE_ACTIVITY_RESET',
+  }
+}
 
 export const getVehicleActivityFailed = (err) => {
   return {

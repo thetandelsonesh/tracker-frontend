@@ -1,17 +1,19 @@
 import {useEffect} from "react";
 import {Button, DatePicker, Form, message, Select} from "antd";
 
-import './style.scss'
+import './style.scss';
+
 const { RangePicker } = DatePicker;
 
 let map = null;
 let track = null;
 
-const VehicleActivity = ({vehicles, list, loading, error, fetchVehicleActivity, fetchVehicleList}) => {
+const VehicleActivity = ({vehicles, list, loading, error, fetchVehicleActivity, fetchVehicleList, vehicleActivityReset}) => {
 
   useEffect(() => {
     vehicles.length === 0 && fetchVehicleList();
     initMap();
+    return () => vehicleActivityReset(); //unmount
   }, []);
 
   useEffect(() => {
@@ -44,9 +46,8 @@ const VehicleActivity = ({vehicles, list, loading, error, fetchVehicleActivity, 
 
   const initMap = () => {
     map = new window.google.maps.Map(document.getElementById("map"), {
-      zoom: 13,
-      center: { lat: 0, lng: -180 },
-      mapTypeId: "terrain",
+      zoom: 10,
+      center: { lat: 15.2993, lng: 74.1240 }
     });
 
     track = new window.google.maps.Polyline({
@@ -98,7 +99,9 @@ const VehicleActivity = ({vehicles, list, loading, error, fetchVehicleActivity, 
           </Form>
         </div>
 
-        <div className="content-map" id="map"/>
+        <div className="content-map" id="content-map">
+          <div id="map"/>
+        </div>
       </div>
     </div>
   )

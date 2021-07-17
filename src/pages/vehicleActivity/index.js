@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import VehicleActivity from "./vehicleActivity.comp";
-import { fetchVehicleActivity } from './vehicleActivity.actions';
+import { fetchVehicleActivity, vehicleActivityReset } from './vehicleActivity.actions';
 import { fetchVehicleList } from '../vehicleList/vehicleList.actions';
 
 const mapStateToProps = (state) => {
@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   fetchVehicleActivity,
+  vehicleActivityReset,
   fetchVehicleList
 }
 
