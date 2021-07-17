@@ -13,6 +13,11 @@ const Home = () => {
 
         <ul>
           <li>
+            <Link to={routes.vehicleList}>
+              <Card>Vehicles</Card>
+            </Link>
+          </li>
+          <li>
             <Link to={routes.placeInteraction}>
               <Card>Place Interactions</Card>
             </Link>

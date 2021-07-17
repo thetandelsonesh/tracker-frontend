@@ -30,11 +30,11 @@ const ajax = (type, url, data, config = {}) => {
     if (type === 'get') { axiosParams.params = data} else { axiosParams.data = data}
     axios(axiosParams)
       .then((successResult) => {
-        const { error, data, msg } = successResult.data;
+        const { error, payload, msg } = successResult.data;
         if(error){
           reject(error);
         } else {
-          resolve({data, msg});
+          resolve({...payload, msg});
         }
       })
       .catch((errorResult) => {
