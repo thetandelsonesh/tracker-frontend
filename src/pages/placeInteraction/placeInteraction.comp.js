@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import moment from 'moment';
-import {Button, DatePicker, Form, message, Table} from "antd";
+import {Button, DatePicker, Form, message, Select, Table} from "antd";
 
 import './style.scss';
 
@@ -33,14 +33,22 @@ const columns = [
   },
 ];
 
-const PlaceInteraction = ({list, total, error, loading, fetchPlaceInteraction}) => {
+const PlaceInteraction = ({list, places, total, error, loading, fetchPlaceList, fetchPlaceInteraction}) => {
   const [pagination, setPagination] = useState({
     current: 1,
     pageSize: 50,
     total: 50,
     showSizeChanger: false,
   });
-  const [range, setRange] = useState([null, null]);
+  const [params, setParams] = useState({
+    placeId: null,
+    startDate: null,
+    endDate: null,
+  });
+
+  useEffect(() => {
+    fetchPlaceList();
+  }, [])
 
   useEffect(() => {
     error?.code && message.error(error.msg);
@@ -51,22 +59,28 @@ const PlaceInteraction = ({list, total, error, loading, fetchPlaceInteraction}) 
   }, [total]);
 
   useEffect(() => {
-    range && range[0] && range[1] && onChange(pagination);
-  }, [range]);
+    (params.placeId && params.startDate && params.endDate) && onChange(pagination);
+  }, [params]);
 
   const onChange = (pagination) => {
-    const params = {
-      startDate: range[0],
-      endDate: range[1],
+    const query = {
+      ...params,
       page: pagination.current,
     }
-    fetchPlaceInteraction(params);
+    fetchPlaceInteraction(query);
     setPagination(pagination);
   }
 
-  const onFinish = ({dateRange}) => {
-    setRange(dateRange.map(d => d.format('YYYY-MM-DD')));
+  const onFinish = ({placeId, dateRange}) => {
+    const range = dateRange.map(d => d.format('YYYY-MM-DD'));
+    setParams({
+      placeId: placeId,
+      startDate: range[0],
+      endDate: range[1],
+    })
   }
+
+  const options = places.map((p) => (<Select.Option key={p.id} value={p.id}>{p.name}</Select.Option>));
 
   return (
     <div className="page">
@@ -81,6 +95,15 @@ const PlaceInteraction = ({list, total, error, loading, fetchPlaceInteraction}) 
             layout="inline"
             onFinish={onFinish}
           >
+            <Form.Item
+              name="placeId"
+              rules={[{ required: true, message: 'Please select Place!' }]}
+            >
+              <Select size="large" placeholder={'Select Place'} allowClear>
+                {options}
+              </Select>
+            </Form.Item>
+
             <Form.Item
               name="dateRange"
               rules={[{ required: true, message: 'Please select date range!' }]}
@@ -104,7 +127,7 @@ const PlaceInteraction = ({list, total, error, loading, fetchPlaceInteraction}) 
             dataSource={list}
             pagination={pagination}
             onChange={onChange}
-            scroll={{ y: '60vh' }}
+            scroll={{ y: '55vh' }}
           />
         </div>
       </div>
