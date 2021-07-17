@@ -4,6 +4,6 @@ export const getVehicleList = () => {
   return ajax('get', '/vehicle', {});
 }
 
-export const getVehicleActivities = (params) => {
+export const getVehicleActivity = (params) => {
   return ajax('get', '/vehicle/activity', params);
 }

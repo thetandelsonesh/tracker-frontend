@@ -24,7 +24,7 @@ const Home = () => {
           </li>
           <li>
             <Link to={routes.vehicleActivity}>
-              <Card>Vehicle Activities</Card>
+              <Card>Vehicle Activity</Card>
             </Link>
           </li>
         </ul>

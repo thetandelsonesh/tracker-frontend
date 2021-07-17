@@ -1,13 +1,11 @@
 import {useEffect} from "react";
 import {message, Table} from "antd";
 
-import './style.scss';
-
 const columns = [
   {
-    title: 'Vehicle Licence',
-    dataIndex: 'licence',
-    key: 'vehicle',
+    title: 'Vehicle License',
+    dataIndex: 'license',
+    key: 'license',
   },
   {
     title: 'Model',

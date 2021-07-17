@@ -8,7 +8,7 @@ const { RangePicker } = DatePicker;
 
 const columns = [
   {
-    title: 'Vehicle Licence',
+    title: 'Vehicle License',
     dataIndex: 'vehicleLicense',
     key: 'vehicleLicense',
     render: (text, data) => data?.vehicle?.license
