@@ -72,11 +72,10 @@ const PlaceInteraction = ({list, places, total, error, loading, fetchPlaceList, 
   }
 
   const onFinish = ({placeId, dateRange}) => {
-    const range = dateRange.map(d => d.format('YYYY-MM-DD'));
     setParams({
       placeId: placeId,
-      startDate: range[0],
-      endDate: range[1],
+      startDate: dateRange[0].unix(),
+      endDate: dateRange[1].unix(),
     })
   }
 
@@ -108,7 +107,7 @@ const PlaceInteraction = ({list, places, total, error, loading, fetchPlaceList, 
               name="dateRange"
               rules={[{ required: true, message: 'Please select date range!' }]}
             >
-              <RangePicker size="large" />
+              <RangePicker size="large" showTime/>
             </Form.Item>
 
             <Form.Item>

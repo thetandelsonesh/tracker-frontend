@@ -35,10 +35,9 @@ const VehicleActivity = ({vehicles, list, loading, error, fetchVehicleActivity, 
   }, [list]);
 
   const onFinish = ({dateRange, vehicleId}) => {
-   const formatRange = dateRange.map(d => d.format('YYYY-MM-DD'));
    const params = {
-     startDate: formatRange[0],
-     endDate: formatRange[1],
+     startDate: dateRange[0].unix(),
+     endDate: dateRange[1].unix(),
      vehicleId: vehicleId,
    }
    fetchVehicleActivity(params);
@@ -88,7 +87,7 @@ const VehicleActivity = ({vehicles, list, loading, error, fetchVehicleActivity, 
               name="dateRange"
               rules={[{ required: true, message: 'Please select date range!' }]}
             >
-              <RangePicker size="large" />
+              <RangePicker size="large" showTime/>
             </Form.Item>
 
             <Form.Item>
