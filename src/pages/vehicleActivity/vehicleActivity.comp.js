@@ -24,8 +24,8 @@ const VehicleActivity = ({vehicles, list, loading, error, fetchVehicleActivity, 
     if(list.length){
       const coord = list.filter(({location}) => !!location).map(({location}) => {
         return {
-          lat: location.coordinates[0],
-          lng: location.coordinates[1],
+          lat: location.coordinates[1],
+          lng: location.coordinates[0],
         }
       });
       track.setPath(coord);
