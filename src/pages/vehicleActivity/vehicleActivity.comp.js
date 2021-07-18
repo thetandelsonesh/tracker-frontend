@@ -30,6 +30,7 @@ const VehicleActivity = ({vehicles, polyline, loading, error, fetchVehicleActivi
           lng: loc[0],
         }
       });
+      console.log(coordinates, coordinates.length);
       track.setPath(coor);
       track.setMap(map);
       map.setCenter(new window.google.maps.LatLng(coor[0].lat, coor[0].lng));

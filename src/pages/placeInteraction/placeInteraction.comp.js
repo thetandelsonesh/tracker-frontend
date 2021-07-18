@@ -9,21 +9,19 @@ const { RangePicker } = DatePicker;
 const columns = [
   {
     title: 'Vehicle License',
-    dataIndex: 'vehicleLicense',
-    key: 'vehicleLicense',
-    render: (text, data) => data?.vehicle?.license
+    dataIndex: 'license',
+    key: 'license',
   },
   {
     title: 'Vehicle Model',
-    dataIndex: 'vehicleModel',
-    key: 'vehicleModel',
-    render: (text, data) => data?.vehicle?.model
+    dataIndex: 'model',
+    key: 'model'
   },
   {
     title: 'Coordinates',
     dataIndex: 'location',
     key: 'location',
-    render: (text, data) => `${data?.location?.coordinates[0]}, ${data?.location?.coordinates[1]}`
+    render: (text, data) => `${data?.location?.coordinates[1]}, ${data?.location?.coordinates[0]}`
   },
   {
     title: 'Time',
