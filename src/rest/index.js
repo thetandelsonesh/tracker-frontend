@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiBaseURL = process.env.NODE_ENV === 'production'
-  ? 'http://ec2-13-126-206-180.ap-south-1.compute.amazonaws.com/api/'
+  ? 'http://ec2-13-126-173-22.ap-south-1.compute.amazonaws.com/api/'
   : 'http://localhost:5000/api/';
 
 const xAPIKey = 'dc580f09-3fcb-4da4-8927-40924a329626';

@@ -8,7 +8,7 @@ const { RangePicker } = DatePicker;
 let map = null;
 let track = null;
 
-const VehicleActivity = ({vehicles, list, loading, error, fetchVehicleActivity, fetchVehicleList, vehicleActivityReset}) => {
+const VehicleActivity = ({vehicles, polyline, loading, error, fetchVehicleActivity, fetchVehicleList, vehicleActivityReset}) => {
 
   useEffect(() => {
     vehicles.length === 0 && fetchVehicleList();
@@ -21,18 +21,20 @@ const VehicleActivity = ({vehicles, list, loading, error, fetchVehicleActivity, 
   }, [error?.code]);
 
   useEffect(() => {
-    if(list.length){
-      const coord = list.filter(({location}) => !!location).map(({location}) => {
+    if(polyline){
+      const polyLineObj = JSON.parse(polyline);
+      const {coordinates} = polyLineObj[0].polyline
+      const coor = coordinates.map((loc) => {
         return {
-          lat: location.coordinates[1],
-          lng: location.coordinates[0],
+          lat: loc[1],
+          lng: loc[0],
         }
       });
-      track.setPath(coord);
+      track.setPath(coor);
       track.setMap(map);
-      map.setCenter(new window.google.maps.LatLng(coord[0].lat, coord[0].lng));
+      map.setCenter(new window.google.maps.LatLng(coor[0].lat, coor[0].lng));
     }
-  }, [list]);
+  }, [polyline]);
 
   const onFinish = ({dateRange, vehicleId}) => {
    const params = {
